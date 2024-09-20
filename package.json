@@ -1,0 +1,29 @@
+{
+  "name": "blog_site",
+  "version": "1.0.0",
+  "description": "It is a blogsite for learning backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kanyorok/Blogsite-node.git"
+  },
+  "keywords": [
+    "Blog",
+    "Stories"
+  ],
+  "author": "Agatha and Robert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kanyorok/Blogsite-node.git/issues"
+  },
+  "homepage": "https://github.com/Kanyorok/Blogsite-node.gi#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.3"
+  }
+}
