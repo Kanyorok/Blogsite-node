@@ -4,7 +4,9 @@
   "description": "It is a blogsite for learning backend",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT & nodemon backend/server",
+    "prod": "SET NODE_ENV=PRODUCTION & nodemon backend/server"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,8 @@
     "express": "^4.21.0",
     "mysql2": "^3.11.3",
     "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }
