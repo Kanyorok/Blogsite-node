@@ -1,0 +1,77 @@
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcryptjs');
+const sequelize = require('../config/sequelize');
+
+const User = sequelize.define('user', {
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            isEmail: {
+                msg: 'Please enter a valid email'
+            },
+            notEmpty: {
+                msg: 'Please enter email to proceed.'
+            }
+        }
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: 'Please enter your name',
+            },
+            len: {
+                args: [0, 100],
+                msg: 'Your name cannot exceed 100 characters'
+            }
+        }
+    },
+    photo: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    Bio: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: 'Please enter your name',
+            },
+            len: {
+                args: [0, 500],
+                msg: 'Your bio cannot exceed 500 characters'
+            }
+        }},
+    Password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: 'Please enter your password'
+            },
+            len: {
+                args: [8, undefined],
+                msg: 'Your password must be longer than 8 characters'
+            }
+        }
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+    }
+});
+
+// Encrypting password before update user
+User.beforeSave(async (user, options) => {
+    if (user.changed('password')) {
+      user.password = await bcrypt.hash(user.password, 10);
+    }
+  });
+
+  User.hasMany(Comment, {foreignKey: 'user_id'});
+  User.hasMany(Post, {foreignKey: 'author_id'});
+  User.hasMany(Like, {foreignKey: 'user_id'});
+
+  module.exports= User;
