@@ -72,15 +72,24 @@ User.init({
     createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
+    },
+    posts_counter: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+    }
+}, {sequelize,
+    modelName: 'User',
+    hooks: {
+        beforeCreate: async (user) => {
+            //Hash password before save user
+            if(user.Password) {
+                user.password = await bcrypt.hash(user.password, 10)
+            }
+        }
     }
 });
 
-// Encrypting password before update user
-User.beforeSave(async (user, options) => {
-    if (user.changed('password')) {
-      user.password = await bcrypt.hash(user.password, 10);
-    }
-  });
+
 
   //Associations
   User.associate = (models) => {

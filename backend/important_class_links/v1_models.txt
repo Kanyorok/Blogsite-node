@@ -60,6 +60,10 @@ const User = sequelize.define('user', {
     createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
+    },
+    posts_counter: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
     }
 });
 
