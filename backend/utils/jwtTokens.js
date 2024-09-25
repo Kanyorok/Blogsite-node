@@ -1,6 +1,6 @@
 const sendToken = (user, statusCode, res) => {
     //Create JWT Token
-    const token = user.JwToken();
+    const token = user.getJwToken();
 
     const options = {
         expires: new Date(

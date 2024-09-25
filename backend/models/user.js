@@ -78,15 +78,7 @@ User.init({
         defaultValue: 0,
     }
 }, {sequelize,
-    modelName: 'User',
-    hooks: {
-        beforeCreate: async (user) => {
-            //Hash password before save user
-            if(user.Password) {
-                user.password = await bcrypt.hash(user.password, 10)
-            }
-        }
-    }
+    modelName: 'User'
 });
 
 
