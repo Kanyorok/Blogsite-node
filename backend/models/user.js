@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const validator = require('validator');
 const sequelize = require('../config/sequelize');
 
@@ -10,6 +11,12 @@ class User extends Model {
             order: [['createdAt', 'DESC']],
             limit: 5
         })
+    }
+
+    getJwToken() {
+        return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
+          expiresIn: process.env.JWT_EXPIRES_TIME
+        });
     }
 
 }
@@ -78,7 +85,17 @@ User.init({
         defaultValue: 0,
     }
 }, {sequelize,
-    modelName: 'User'
+    modelName: 'User',
+    hooks: {
+        beforeCreate: async (user) => {
+            //Hash password before save user
+            if(user.Password) {
+                user.Password = await bcrypt.hash(user.Password, 10)
+            }
+        }
+       
+
+    }
 });
 
 
