@@ -1,0 +1,2 @@
+ABOUT SEQUELIZE
+https://medium.com/@rishu__2701/node-js-database-magic-exploring-the-powers-of-sequelize-orm-a22a521d9d9d

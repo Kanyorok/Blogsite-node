@@ -4,7 +4,9 @@
   "description": "It is a blogsite for learning backend",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server.js",
+    "dev": "SET NODE_ENV=DEVELOPMENT & nodemon backend/server",
+    "prod": "SET NODE_ENV=PRODUCTION & nodemon backend/server"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,13 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.3",
     "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "bcryptjs": "^2.4.3",
+    "nodemon": "^3.1.7",
+    "validator": "^13.12.0"
   }
 }
