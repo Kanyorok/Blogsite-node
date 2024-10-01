@@ -19,6 +19,10 @@ class User extends Model {
         });
     }
 
+    async comparePassword(enteredPassword) {
+        return await bcrypt.compare(enteredPassword, this.Password);
+    }
+
 }
 
 User.init({
